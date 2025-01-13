@@ -20,9 +20,6 @@ RUN apk add --no-cache \
     php-session \
     supervisor
 
-# Create symlink so programs depending on `php` still function
-RUN ln -s /usr/bin/php /usr/bin/php
-
 # Configure nginx
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
