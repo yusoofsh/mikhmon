@@ -3,9 +3,6 @@ FROM alpine:latest
 LABEL Maintainer = "Hilman Maulana, Laksamadi Guko"
 LABEL Description = "MikroTik Hotspot Monitor (Mikhmon) is a web-based application (MikroTik API PHP class) to assist MikroTik Hotspot management."
 
-# Mikhmon Version 3 or 4
-ARG MIKHMON_VERSION=version-4
-
 # Setup document root
 WORKDIR /var/www/html
 
@@ -46,7 +43,7 @@ RUN chown -R mikhmon.mikhmon /var/www/html /run /var/lib/nginx /var/log/nginx
 USER mikhmon
 
 # Add application
-COPY --chown=mikhmon ${MIKHMON_VERSION} /var/www/html/
+COPY --chown=mikhmon src /var/www/html/
 
 # Let supervisord start nginx & php-fpm
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
